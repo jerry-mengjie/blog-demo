@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { MYSQL_CONFIG } from './config/db.config';
 
 @Module({
-  imports: [],
+  imports: [TypeOrmModule.forRoot(MYSQL_CONFIG),],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
