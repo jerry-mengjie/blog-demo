@@ -26,4 +26,15 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  // 开发服务器配置
+  server: {
+    port: 5173, // 前端开发端口
+    // 接口代理：把 /api 开头的请求转发到后端 3000 端口，规避跨域
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // 后端地址
+        changeOrigin: true, // 修改请求源
+      },
+    },
+  },
 })

@@ -1,24 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 根组件无需逻辑，仅作为路由出口容器
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-
-  <div class="button-demo">
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
-  </div>
+  <!-- 路由视图出口：根据当前路由渲染对应页面 -->
+  <router-view />
 </template>
-
-<style scoped>
-.button-demo {
-  margin-top: 1rem;
-}
-</style>
