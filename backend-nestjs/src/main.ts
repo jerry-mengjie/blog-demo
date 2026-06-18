@@ -14,8 +14,9 @@ async function bootstrap() {
   // 全局启用参数校验管道
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // 自动过滤掉 DTO 中未声明的字段
-      transform: true, // 自动把入参转换为 DTO 类型
+      whitelist: true, // 只保留 DTO 定义的字段，自动删掉额外参数  检测非白名单字段
+      forbidNonWhitelisted: true, // 前端传 DTO 不存在字段 → 直接报错 forbidNonWhitelisted 依赖于 whitelist
+      transform: true, // URL/Body 里的字符串自动转成对应类型（如 "18" → 18） 显式指定转化
     }),
   );
   // 监听端口，默认 3000
