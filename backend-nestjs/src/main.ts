@@ -2,6 +2,8 @@
 import { NestFactory } from '@nestjs/core';
 // 引入全局校验管道
 import { ValidationPipe } from '@nestjs/common';
+// 引入全局异常过滤器
+import { HttpExceptionFilter } from './common/http-exception.filter';
 // 引入根模块
 import { AppModule } from './app.module';
 
@@ -11,6 +13,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // 开启跨域，允许前端(默认5173端口)访问
   app.enableCors();
+  // 全局异常过滤器：将 HttpException 转为 Result.fail 统一结构
+  app.useGlobalFilters(new HttpExceptionFilter());
   // 全局启用参数校验管道
   app.useGlobalPipes(
     new ValidationPipe({
